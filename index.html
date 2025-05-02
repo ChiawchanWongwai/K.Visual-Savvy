@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visual Savvy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="#" class="logo">Visual Savvy</a>
+      <nav class="nav">
+        <a href="about.html">About</a>
+        <a href="project.html">Projects</a>
+        <a href="serices.html">Services</a>
+        <a href="#">Resources</a>
+        <a href="#">Contact us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-slide">
+      <p>Preserving <span>“Culture”</span>with technologies</p>
+    </div>
+    <div class="hero-slide">
+      <p>Preserving <span>“Expression”</span>with technologies</p>
+    </div>
+    <div class="hero-slide">
+      <p>Preserving <span>“History”</span>with technologies</p>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="mission">
+    <p>
+      "Visual Savvy" believes that culture provides humanity with a sense of identity, 
+      telling us who we are, where we came from, and where we belong in the world. 
+      We utilize motion capture and mixed reality technologies to preserve the grace 
+      of these cultural expressions while curating vibrant digital assets.
+    </p>
+  </section>
+
+  <section class="projects">
+    <h2>Our Projects</h2><br>
+  
+    <!-- แถวที่ 1: วิดีโอซ้าย, ข้อความขวา -->
+    <div class="project-row">
+      <div class="project-media">
+        <video src="video1.mp4" controls></video>
+      </div>
+      <div class="project-text">
+        <small>Carnegie Mellon – CMKL | Thailand</small>
+        <h3>Immersive MR Application for Learning Thai Dancing Heritage</h3>
+        <p>Description</p>
+        <a href="#">Read more</a>
+      </div>
+    </div>
+  
+    <!-- แถวที่ 2: ข้อความซ้าย, รูปขวา -->
+    <div class="project-row reverse">
+      <div class="project-text">
+        <small>Carnegie Mellon – CMKL | Thailand</small>
+        <h3>20 Basic Thai Dancing Moves in 3D Digital Assets</h3>
+        <p>Description</p>
+        <a href="#">Read more</a>
+      </div>
+      <div class="project-media">
+        <img src="test.jpg" alt="Project Image" />
+      </div>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="services-left">
+      <h2>Our services</h2>
+      <p>
+        Visual Savvy offers an all-encompassing range of immersive design services 
+        from 3D motion assets to virtual space design.
+      </p>
+      <small>
+        Not sure what you are looking for?<br />
+        <a href="#">Contact us</a>
+      </small>
+    </div>
+  
+    <div class="services-right">
+      <!-- Card 1 -->
+      <div class="service-card">
+        <div class="card-icon">
+          <img src="https://via.placeholder.com/80" alt="icon" />
+        </div>
+        <h3>3D Motion Capture Creation</h3>
+        <p>Supporting or descriptive text for the card goes here like a pro.</p>
+        <a href="#" class="btn">LEARN MORE ABOUT OUR TEAM</a>
+      </div>
+  
+      <!-- Card 2 -->
+      <div class="service-card">
+        <div class="card-icon">
+          <img src="test.jpg" alt="icon" />
+        </div>
+        <h3>Virtual Space Design</h3>
+        <p>Supporting or descriptive text for the card goes here like a pro.</p>
+        <a href="#" class="btn">LEARN MORE ABOUT OUR TEAM</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNER SECTION -->
+<section class="partners">
+  <p>We are a trusted partner for many organizations globally and locally to</p>
+  <h2>preserve the grace of cultures</h2>
+  <p>into vibrant digital assets</p>
+
+  <div class="partner-logos">
+    <img src="https://via.placeholder.com/100x50" alt="Partner 1">
+    <img src="https://via.placeholder.com/100x50" alt="Partner 2">
+    <img src="https://via.placeholder.com/100x50" alt="Partner 3">
+    <img src="https://via.placeholder.com/100x50" alt="Partner 4">
+    <img src="https://via.placeholder.com/100x50" alt="Partner 5">
+  </div>
+</section>
+
+<!-- CONTACT FORM SECTION -->
+<section class="contact">
+  <h2>Let’s preserve culture together</h2>
+  <form class="contact-form">
+    <input type="text" placeholder="Name" required>
+    <input type="email" placeholder="Email Address" required>
+    <input type="tel" placeholder="Telephone">
+    <input type="text" placeholder="You want Visual Savvy to..." required>
+    <button type="submit">SUBMIT</button>
+  </form>
+
+  <div class="social-icons">
+    <img src="https://via.placeholder.com/24" alt="Icon 1">
+    <img src="https://via.placeholder.com/24" alt="Icon 2">
+    <img src="https://via.placeholder.com/24" alt="Icon 3">
+    <img src="https://via.placeholder.com/24" alt="Icon 4">
+  </div>
+</section>
+  
+
+  <script>
+    const slider = document.querySelector('.hero');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+  
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.classList.add('dragging');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+  
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.classList.remove('dragging');
+    });
+  
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.classList.remove('dragging');
+    });
+  
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 1.5; // ความเร็วลาก
+      slider.scrollLeft = scrollLeft - walk;
+    });
+  </script>
+  
+
+</body>
+</html>

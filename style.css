@@ -1,0 +1,456 @@
+* {
+  margin: 0; /* ลบระยะขอบเริ่มต้นของทุกแท็ก */
+  padding: 0; /* ลบ padding เริ่มต้นด้วย */
+  box-sizing: border-box; /* นับขนาดรวม padding และ border เข้าไปใน width/height */
+}
+
+body {
+  font-family: Arial, sans-serif; /* ใช้ฟอนต์อ่านง่าย */
+  line-height: 1.6; /* ระยะห่างระหว่างบรรทัด ให้อ่านง่ายขึ้น */
+}
+
+/* Header */
+.header {
+  position: sticky; /* ให้ header ติดอยู่ด้านบนเวลา scroll */
+  top: 0; /* ยึดติดขอบบน */
+  z-index: 50; /* ให้ header อยู่ชั้นบนสุด (ซ้อนเหนือส่วนอื่น) */
+  width: 100%; /* ให้กว้างเต็มหน้าจอ */
+  background-color: rgba(255, 255, 255, 0.8); /* สีขาวโปร่งใส 80% */
+  backdrop-filter: blur(4px); /* เบลอพื้นหลังนิด ๆ */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* เส้นบาง ๆ ใต้ header */
+}
+
+.container {
+  max-width: 1200px; /* กำหนดความกว้างสูงสุดของเนื้อหา */
+  margin: 0 auto; /* จัดให้อยู่ตรงกลางแนวนอน */
+  padding: 1rem; /* ระยะห่างด้านใน */
+  display: flex; /* วางลูกในแนวนอน */
+  justify-content: space-between; /* ซ้ายไปซ้าย ขวาไปขวา มีช่องว่างตรงกลาง */
+  align-items: center; /* จัดให้ตรงกลางแนวตั้ง */
+}
+
+.logo {
+  font-weight: bold; /* ตัวหนา */
+  font-size: 1.5rem; /* ขนาดตัวอักษรใหญ่ขึ้นนิดหน่อย */
+  text-decoration: none; /* เอาเส้นใต้ลิงก์ออก */
+  color: black; /* สีดำ */
+}
+
+.nav {
+  display: flex; /* เมนูวางเรียงในแนวนอน */
+  gap: 1.5rem; /* เว้นช่องห่างระหว่างเมนู */
+}
+
+.nav a {
+  text-decoration: none; /* ไม่มีเส้นใต้ */
+  color: black; /* สีดำ */
+  font-weight: 500; /* หนากลาง ๆ */
+}
+
+.nav a:hover {
+  text-decoration: underline; /* พอเอาเมาส์วางจะมีเส้นใต้ */
+}
+
+/* Hero Section */
+.hero {
+  display: flex; /* วาง slide เป็นแนวนอน */
+  overflow-x: auto; /* เลื่อนได้แนวนอน */
+  scroll-snap-type: x mandatory; /* ล็อกแต่ละ slide ให้อยู่พอดี */
+  height: 80vh; /* สูง 80% ของหน้าจอ */
+  width: 100%; /* เต็มความกว้างหน้าจอ */
+  background-color: #facc15; /* สีเหลืองอ่อน */
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE/Edge */
+}
+
+.hero::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.hero-slide {
+  flex: 0 0 100%; /* แต่ละ slide กว้างเต็มจอพอดี */
+  scroll-snap-align: start; /* ให้แต่ละ slide ติดขอบซ้าย */
+  display: flex; /* จัดเนื้อหาข้างในเป็นแถว (จริง ๆ แนวเดียวก็ได้) */
+  align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+  justify-content: center; /* จัดให้อยู่กลางแนวนอน */
+  font-size: 2rem; /* ขนาดตัวอักษรใหญ่ */
+  font-weight: bold; /* ตัวหนา */
+  text-align: center; /* จัดข้อความให้อยู่กลาง */
+  padding: 2rem; /* ระยะห่างภายใน */
+}
+
+.hero-slide span {
+  font-size: 3rem; /* คำเน้น เช่น “Culture” จะใหญ่กว่า */
+  display: block; /* ให้ขึ้นบรรทัดใหม่ */
+  color: black; /* สีดำ */
+}
+
+/* Mission Section */
+.mission {
+  padding: 4rem 2rem; /* บนล่าง 4rem ซ้ายขวา 2rem */
+  background-color: #ffffff; /* สีพื้นเทาอ่อน */
+  text-align: left; /* จัดข้อความให้อยู่ตรงกลาง */
+}
+
+.mission h2 {
+  font-size: 2.5rem; /* หัวข้อใหญ่ */
+  margin-bottom: 1rem; /* เว้นระยะใต้หัวข้อ */
+}
+
+.mission p {
+  font-size: 1.2rem; /* ขนาดเนื้อความ */
+  max-width: 800px; /* จำกัดความกว้างไม่ให้ยาวจนอ่านยาก */
+  margin: 0 auto; /* จัดให้อยู่กลางจอ */
+}
+
+.projects {
+  padding: 4rem 2rem; /* เดิมมีอยู่แล้ว */
+  max-width: 1200px; /* จำกัดความกว้าง */
+  margin: 0 auto; /* ให้อยู่กลาง */
+}
+
+
+.project-row {
+  display: flex; /* จัดเรียงภายในแนวนอน */
+  flex-direction: row; /* ค่าเริ่มต้น: ซ้ายไปขวา */
+  align-items: center; /* จัดข้อความให้อยู่กึ่งกลางแนวตั้ง */
+  gap: 2rem; /* ช่องว่างระหว่างรูปกับข้อความ */
+  margin-bottom: 4rem; /* ระยะห่างแต่ละแถว */
+}
+
+.project-row.reverse {
+  flex-direction: row-reverse; /* พลิกให้ข้อความอยู่ซ้าย รูปอยู่ขวา */
+}
+
+.project-media {
+  flex: 1; /* กว้างครึ่งหนึ่งของแถว */
+}
+
+.project-media video,
+.project-media img {
+  width: 100%; /* เต็มกรอบด้านใน */
+  height: auto; /* รักษาอัตราส่วน */
+  border-radius: 6px; /* มุมโค้งนิดนึง */
+  border: 2px solid #ccc; /* ขอบจาง ๆ */
+}
+
+.project-text {
+  flex: 1; /* อีกครึ่งของแถว */
+  display: flex; /* ใช้ flex ภายในกล่องข้อความ */
+  flex-direction: column; /* เรียงข้อความจากบนลงล่าง */
+  gap: 0.75rem; /* ช่องว่างแต่ละบรรทัด */
+}
+
+.project-text small {
+  font-size: 0.9rem; /* ขนาด subtitle */
+  color: #666; /* สีเทาอ่อน */
+}
+
+.project-text h3 {
+  font-size: 1.5rem; /* หัวข้อใหญ่ */
+  font-weight: bold;
+}
+
+.project-text p {
+  color: #333; /* ข้อความปกติ */
+}
+
+.project-text a {
+  color: #007acc; /* สีฟ้า */
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.project-text a:hover {
+  text-decoration: underline; /* ลากเมาส์แล้วขึ้นเส้นใต้ */
+}
+
+/* Responsive แก้ไขสำหรับมือถือ */
+@media (max-width: 768px) {
+  .project-row,
+  .project-row.reverse {
+    flex-direction: column; /* ซ้อนจากบนลงล่าง */
+  }
+}
+
+.services {
+  display: flex; /* วางซ้ายขวาแนวนอน */
+  gap: 2rem; /* ช่องว่างระหว่างสองฝั่ง */
+  padding: 4rem 2rem; /* ระยะรอบ section */
+  max-width: 1200px; /* จำกัดความกว้าง */
+  margin: 0 auto; /* จัดให้อยู่กลางจอ */
+}
+
+.services-left {
+  flex: 1; /* กินพื้นที่ครึ่งหนึ่ง */
+}
+
+.services-left h2 {
+  font-size: 2rem; /* หัวข้อใหญ่ */
+  margin-bottom: 1rem;
+}
+
+.services-left p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.services-left small {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.services-left a {
+  color: #007acc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.services-right {
+  flex: 2; /* พื้นที่กว้างกว่าด้านซ้าย */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.service-card {
+  flex: 1 1 250px; /* กว้างขั้นต่ำ 250px */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.card-icon img {
+  width: 60px;
+  height: 60px;
+}
+
+.service-card h3 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.service-card .btn {
+  margin-top: auto; /* ดันปุ่มไปด้านล่าง */
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* PARTNER SECTION */
+.partners {
+  text-align: center; /* จัดทุกอย่างกลางจอ */
+  padding: 4rem 2rem;
+  background-color: #fafafa;
+}
+
+.partners p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+.partners h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: #111;
+}
+
+.partner-logos {
+  margin-top: 2rem;
+  display: flex; /* แสดงภาพเรียงแนวนอน */
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap; /* ถ้าจอเล็กจะขึ้นบรรทัดใหม่ */
+}
+
+.partner-logos img {
+  height: 50px;
+  object-fit: contain;
+}
+
+/* CONTACT SECTION */
+.contact {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+}
+
+.contact h2 {
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.contact-form input {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+}
+
+.contact-form button {
+  background-color: #fff;
+  color: #000;
+  font-weight: bold;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #ddd;
+}
+
+.social-icons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+}
+/* About  */
+.about-hero {
+  background-color: #facc15;
+  padding: 4rem 2rem;
+  text-align: left;
+}
+
+.about-hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-hero h2 span {
+  display: block;
+  font-weight: bold;
+}
+
+.about-hero p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.asset-preview {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.asset-preview .mockup-placeholder {
+  width: 100%;
+  height: 200px;
+  background-color: #e5e7eb;
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+.team-members {
+  padding: 4rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.member {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  align-items: flex-start;
+}
+
+.photo-block img {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  background-color: #e9d5ff;
+}
+
+.info-block {
+  flex: 1;
+}
+
+.info-block h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.info-block .title {
+  font-weight: bold;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.info-block p {
+  margin-bottom: 0.5rem;
+}
+
+.info-block ul {
+  padding-left: 1.25rem;
+}
+
+.member-icons {
+  display: flex;
+  gap: 1rem;
+  /* ระยะห่างระหว่างไอคอน */
+  margin-top: 0.5rem;
+  /* ระยะห่างจากชื่อ */
+}
+
+.member-icons img {
+  width: 100px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* Project */
+.problem-section {
+  padding: 5rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.problem-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.problem-section p {
+  font-size: 1rem;
+  color: #333;
+}
